@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using L01_2021GB650_2021CZ601.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,9 +8,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 //Inyección por dependencia del string de conexion al contexto
-builder.Services.AddDbContext<equiposContext>(options =>
+builder.Services.AddDbContext<platosContext>(options =>
     options.UseSqlServer(
-        builder.Configuration.GetConnectionString("equiposDbConnection")
+        builder.Configuration.GetConnectionString("restauranteDbConnection")
+        )
+);
+builder.Services.AddDbContext<clientesContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("restauranteDbConnection")
+        )
+);
+builder.Services.AddDbContext<pedidosContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("restauranteDbConnection")
+        )
+);
+builder.Services.AddDbContext<motoristasContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("restauranteDbConnection")
         )
 );
 
